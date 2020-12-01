@@ -28,23 +28,20 @@ func main() {
 	}
 
 	// test every combination of values
-	stop := false
+	printed2, printed3 := false, false
 	for _, a := range numbers {
 		for _, b := range numbers {
-			if a+b == 2020 {
-				fmt.Println(a * b)
-				stop = true
+			if a+b == 2020 && !printed2 {
+				fmt.Println("2 values: ", a*b)
+				printed2 = true
 			}
 
-			// break the loop if the values were found
-			if stop {
-				break
+			for _, c := range numbers {
+				if a+b+c == 2020 && !printed3 {
+					fmt.Println("3 values: ", a*b*c)
+					printed3 = true
+				}
 			}
-		}
-
-		// break the loop if the values were found
-		if stop {
-			break
 		}
 	}
 }
