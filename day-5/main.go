@@ -21,7 +21,6 @@ func main() {
 	scanner.Split(bufio.ScanLines)
 
 	// process all lines
-	max := 0
 	var ids []int
 	for scanner.Scan() {
 		val := scanner.Text()
@@ -46,20 +45,13 @@ func main() {
 			}
 		}
 
-		// test the highest value
-		if id > max {
-			max = id
-		}
-
 		// store in id array
 		ids = append(ids, id)
 	}
 
-	// print the result
-	fmt.Println("Part 1:", max)
-
-	// sort the ids and find the missing number
+	// sort the ids and find the results (max num and missing num)
 	sort.Ints(ids)
+	fmt.Println("Part 1:", ids[len(ids)-1])
 	for i, id := range ids {
 		next := id + 1
 		if ids[i+1] != next {
