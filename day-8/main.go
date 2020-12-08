@@ -80,21 +80,21 @@ func main() {
 
 	// part 2 - what has to be changed to break the inf loop
 	for i, c := range cmds {
-		// duplicate the command slice
-		cmdsDebug := make([]cmd, len(cmds))
-		copy(cmdsDebug, cmds)
-
 		// change exactly one jmp/nop command
 		if c.ins == "nop" {
-			cmdsDebug[i].ins = "jmp"
+			cmds[i].ins = "jmp"
 		} else if c.ins == "jmp" {
-			cmdsDebug[i].ins = "nop"
+			cmds[i].ins = "nop"
 		}
 
 		// if this is not an inf loop, print acc
-		inf, acc := isInfiniteLoop(cmdsDebug)
+		inf, acc := isInfiniteLoop(cmds)
 		if !inf {
 			fmt.Println("Part 2:", acc)
+			break
 		}
+
+		// reset previous value
+		cmds[i].ins = c.ins
 	}
 }
