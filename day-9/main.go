@@ -44,12 +44,15 @@ func main() {
 					valid = true
 				}
 			}
+
+			if valid {
+				break
+			}
 		}
 
 		// store the invalid number if found
 		if !valid {
 			invalidNumber = val
-			fmt.Println("Part 1:", val)
 			break
 		}
 
@@ -62,6 +65,7 @@ func main() {
 	}
 
 	// find contiguous set - the weakness
+	weakness := -1
 	for i, v := range numbers {
 		acc, min, max := v, v, v
 		for _, w := range numbers[i+1:] {
@@ -77,8 +81,16 @@ func main() {
 
 			// print the result on match
 			if acc == invalidNumber {
-				fmt.Println("Part 2:", min+max)
+				weakness = min + max
+				break
 			}
 		}
+
+		if weakness > -1 {
+			break
+		}
 	}
+
+	fmt.Println("Part 1:", invalidNumber)
+	fmt.Println("Part 2:", weakness)
 }
