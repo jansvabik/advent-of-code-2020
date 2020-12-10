@@ -29,8 +29,8 @@ func main() {
 
 	// test every combination of values
 	printed2, printed3 := false, false
-	for _, a := range numbers {
-		for _, b := range numbers {
+	for i, a := range numbers {
+		for _, b := range numbers[i:] {
 			if a+b == 2020 && !printed2 {
 				fmt.Println("2 values: ", a*b)
 				printed2 = true
