@@ -46,7 +46,6 @@ func main() {
 	file, err := os.Open("input.txt")
 	if err != nil {
 		log.Fatal("Cannot open the input file.")
-		os.Exit(1)
 	}
 	defer file.Close()
 
