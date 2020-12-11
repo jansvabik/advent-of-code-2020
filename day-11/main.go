@@ -60,8 +60,6 @@ func main() {
 				} else if v == '#' && occa >= 4 {
 					newMatrix[y][x] = 'L'
 					chngs++
-				} else if v == '.' {
-					newMatrix[y][x] = '.'
 				} else {
 					newMatrix[y][x] = rows[y][x]
 				}
