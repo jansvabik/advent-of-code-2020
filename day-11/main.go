@@ -12,16 +12,7 @@ func occupiedAround(x int, y int, seats [][]rune) int {
 	occ := 0
 
 	// all seats around
-	chngs := [8][2]int{
-		{-1, -1},
-		{0, -1},
-		{1, -1},
-		{-1, 0},
-		{1, 0},
-		{-1, 1},
-		{0, 1},
-		{1, 1},
-	}
+	chngs := [8][2]int{{-1, -1}, {0, -1}, {1, -1}, {-1, 0}, {1, 0}, {-1, 1}, {0, 1}, {1, 1}}
 
 	// calculate the number of occupied seats around
 	for _, mv := range chngs {
