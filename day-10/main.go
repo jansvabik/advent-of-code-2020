@@ -42,34 +42,43 @@ func calculateAdapterDifferences(nums []int) (int, int, int) {
 	return diff[0], diff[1], diff[2] + 1
 }
 
+// fibonacci returns the n-th number of the fibonacci sequence
+// thanks, Lukas Gurecky, for finding out that part 2 uses it!
+func fibonacci(n int) int {
+	if n <= 1 {
+		return n
+	}
+	return fibonacci(n-1) + fibonacci(n-2)
+}
+
 // calculatePossibilities calculates all the possible combinations
 // of the adapters in bag, the number is returned from the function
 func calculatePossibilities(joltage int, nums []int) int {
-	poss := 1
+	nums = append([]int{0}, nums...)
+	comb := 1
 
-	totalComb := 1
-	subtract := 0
-	for i, n := range nums[:len(nums)-1] {
-		comb := 0
-		for j := 1; j < 4; j++ {
-			if i+j < len(nums) {
-				if nums[i+j] < n+4 {
-					if nums[i+j] > n+1 {
-						fmt.Println(n, nums[i+1])
-						subtract++
-					}
-					comb++
-				}
+	// find groups of consecutive numbers
+	for i := 0; i < len(nums); i++ {
+		// calculate the number of consecutive numbers in this group
+		lst := []int{nums[i]}
+		for j := 1; j < 5; j++ {
+			if i+j < len(nums) && nums[i+j] == lst[len(lst)-1]+1 {
+				lst = append(lst, nums[i+j])
 			}
 		}
-		totalComb *= comb
+
+		// multiply the combinations by the ln-th number of fibonacci
+		// if there are more than 2 numbers (means more than 1 combination)
+		ln := len(lst)
+		if ln > 2 {
+			comb *= fibonacci(len(lst)+1) - 1
+		}
+
+		// skip the ln-1 next numbers
+		i += ln - 1
 	}
 
-	totalComb -= subtract
-
-	fmt.Println("totalcomb", totalComb)
-
-	return poss
+	return comb
 }
 
 func main() {
