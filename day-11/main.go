@@ -39,7 +39,7 @@ func occupiedAround(x int, y int, seats [][]rune) int {
 	for _, mv := range chngs {
 		nx := x
 		ny := y
-		for true {
+		for {
 			nx += mv[0]
 			ny += mv[1]
 			if nx >= 0 && ny >= 0 && nx < len(seats[0]) && ny < len(seats) {
@@ -78,7 +78,7 @@ func main() {
 	}
 
 	// run the simulation loop for part 1
-	for true {
+	for {
 		chngs := 0
 		newMatrix := make([][]rune, len(rows1))
 		for y, row := range rows1 {
@@ -107,7 +107,7 @@ func main() {
 	}
 
 	// run the simulation loop for part 2
-	for true {
+	for {
 		chngs := 0
 		newMatrix := make([][]rune, len(rows2))
 		for y, row := range rows2 {
