@@ -71,7 +71,7 @@ func calculatePossibilities(joltage int, nums []int) int {
 		// if there are more than 2 numbers (means more than 1 combination)
 		ln := len(lst)
 		if ln > 2 {
-			comb *= fibonacci(len(lst)+1) - 1
+			comb *= fibonacci(ln+1) - 1
 		}
 
 		// skip the ln-1 next numbers
