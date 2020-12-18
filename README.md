@@ -19,3 +19,4 @@ Below you can find table with my feelings about complexity of every of the days,
 | 12  | **    | ***        | [Assignment](https://adventofcode.com/2020/day/12) | [Code](https://github.com/jansvabik/advent-of-code-2020/blob/master/day-12/main.go) |
 | 13  | *     | * (part 1) | [Assignment](https://adventofcode.com/2020/day/13) | [Code](https://github.com/jansvabik/advent-of-code-2020/blob/master/day-13/main.go) |
 | 14  | **    | ****       | [Assignment](https://adventofcode.com/2020/day/14) | [Code](https://github.com/jansvabik/advent-of-code-2020/blob/master/day-14/main.go) |
+| 15  | **    | *          | [Assignment](https://adventofcode.com/2020/day/15) | [Code](https://github.com/jansvabik/advent-of-code-2020/blob/master/day-15/main.go) |
