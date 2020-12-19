@@ -29,7 +29,7 @@ func main() {
 	// extract the data
 	d := strings.Split(string(b), "\n\n")
 	notes := strings.Split(d[0], "\n")
-	// myTicket := strings.Split(d[1], "\n")[1]
+	myTicket := strings.Split(d[1], "\n")[1]
 	nearbyTickets := strings.Split(d[2], "\n")[1:]
 
 	// validity conditions
@@ -91,6 +91,55 @@ func main() {
 		}
 	}
 
+	// part 2 - connect all values to matching name (valconds)
+	nameToI := map[string]int{}
+	for {
+		chngs := 0
+		for i := 0; i < len(validTickets[0]); i++ {
+			// extract i-th values from the tickets to be tested
+			validFor := []string{}
+			for _, conds := range valconds {
+				allValid := true
+				for _, t := range validTickets {
+					v := t[i]
+					if ok := (conds.Intervals[0][0] <= v && conds.Intervals[0][1] >= v) || (conds.Intervals[1][0] <= v && conds.Intervals[1][1] >= v); !ok {
+						allValid = false
+						break
+					}
+				}
+				if _, ok := nameToI[conds.Name]; allValid && !ok {
+					validFor = append(validFor, conds.Name)
+				}
+			}
+
+			// if this is valid for just one field, remember it
+			if len(validFor) == 1 {
+				nameToI[validFor[0]] = i
+				chngs++
+			}
+		}
+		if chngs == 0 {
+			break
+		}
+	}
+
+	// get indexes of the data starting with "departure" word
+	depIndexes := []int{}
+	for n, v := range nameToI {
+		if len(n) >= 9 && n[0:9] == "departure" {
+			depIndexes = append(depIndexes, v)
+		}
+	}
+
+	// multiply the departure data values in my ticket
+	mtvalss := strings.Split(myTicket, ",")
+	pt2res := 1
+	for _, di := range depIndexes {
+		v, _ := strconv.Atoi(mtvalss[di])
+		pt2res *= v
+	}
+
 	// print the results
 	fmt.Println("Part 1:", invalidValuesSum)
+	fmt.Println("Part 2:", pt2res)
 }
